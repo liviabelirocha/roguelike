@@ -13,6 +13,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Animator anim;
 
+    // bullets
+    [SerializeField]
+    private GameObject bullet;
+
+    [SerializeField]
+    private Transform firePoint;
+
+    [SerializeField]
+    private float timeBetweenShots;
+
+    private float shotCounter;
+
+    // player
     [SerializeField]
     private float moveSpeed;
 
@@ -49,7 +62,22 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
         gunArm.rotation = Quaternion.Euler(0, 0, angle);
 
+        // firing a bullet
+        if (Input.GetMouseButtonDown(0)) shoot();
+
+        if (Input.GetMouseButton(0))
+        {
+            shotCounter -= Time.deltaTime;
+            if (shotCounter <= 0) shoot();
+        }
+
         // switching between idle and moving
         anim.SetBool("isMoving", moveInput != Vector2.zero);
+    }
+
+    private void shoot()
+    {
+        Instantiate(bullet, firePoint.position, firePoint.rotation);
+        shotCounter = timeBetweenShots;
     }
 }
