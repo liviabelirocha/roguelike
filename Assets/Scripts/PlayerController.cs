@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     [SerializeField]
     private Rigidbody2D rb;
 
@@ -32,6 +34,11 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
 
     private Camera cam;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -63,19 +70,19 @@ public class PlayerController : MonoBehaviour
         gunArm.rotation = Quaternion.Euler(0, 0, angle);
 
         // firing a bullet
-        if (Input.GetMouseButtonDown(0)) shoot();
+        if (Input.GetMouseButtonDown(0)) Shoot();
 
         if (Input.GetMouseButton(0))
         {
             shotCounter -= Time.deltaTime;
-            if (shotCounter <= 0) shoot();
+            if (shotCounter <= 0) Shoot();
         }
 
         // switching between idle and moving
         anim.SetBool("isMoving", moveInput != Vector2.zero);
     }
 
-    private void shoot()
+    private void Shoot()
     {
         Instantiate(bullet, firePoint.position, firePoint.rotation);
         shotCounter = timeBetweenShots;

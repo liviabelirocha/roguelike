@@ -13,6 +13,9 @@ public class PlayerBullet : MonoBehaviour
     [SerializeField]
     private GameObject impactEffect;
 
+    [SerializeField]
+    private int damage = 50;
+
     void Start()
     {
     }
@@ -25,6 +28,9 @@ public class PlayerBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Instantiate(impactEffect, transform.position, transform.rotation);
+
+        other.GetComponent<EnemyController>()?.DamageEnemy(damage);
+
         Destroy (gameObject);
     }
 
