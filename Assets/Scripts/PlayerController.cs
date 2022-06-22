@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float moveSpeed;
 
+    [SerializeField]
+    private SpriteRenderer bodySR;
+
     private Vector2 moveInput;
 
     private Camera cam;
@@ -86,5 +89,21 @@ public class PlayerController : MonoBehaviour
     {
         Instantiate(bullet, firePoint.position, firePoint.rotation);
         shotCounter = timeBetweenShots;
+    }
+
+    public bool IsPlayerActive()
+    {
+        return gameObject.activeInHierarchy;
+    }
+
+    public Vector3 GetPosition()
+    {
+        return transform.position;
+    }
+
+    public void SetAlpha(float alpha)
+    {
+        bodySR.color =
+            new Color(bodySR.color.r, bodySR.color.g, bodySR.color.b, alpha);
     }
 }

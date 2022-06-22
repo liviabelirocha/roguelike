@@ -54,18 +54,18 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if (body.isVisible)
+        if (body.isVisible && PlayerController.instance.IsPlayerActive())
         {
             // chase player
             if (
                 Vector3
                     .Distance(transform.position,
-                    PlayerController.instance.transform.position) <=
+                    PlayerController.instance.GetPosition()) <=
                 rangeToChasePlayer
             )
             {
                 moveDirection =
-                    PlayerController.instance.transform.position -
+                    PlayerController.instance.GetPosition() -
                     transform.position;
                 moveDirection.Normalize();
             }
@@ -79,7 +79,7 @@ public class EnemyController : MonoBehaviour
                 shouldShoot &&
                 Vector3
                     .Distance(transform.position,
-                    PlayerController.instance.transform.position) <=
+                    PlayerController.instance.GetPosition()) <=
                 shootRange
             )
             {
@@ -91,6 +91,8 @@ public class EnemyController : MonoBehaviour
                 }
             }
         }
+        else
+            rb.velocity = Vector2.zero;
 
         // switching between idle and moving
         anim.SetBool("isMoving", moveDirection != Vector3.zero);
