@@ -38,6 +38,21 @@ public class PlayerController : MonoBehaviour
 
     private Camera cam;
 
+    private float activeMoveSpeed;
+
+    [SerializeField]
+    private float
+
+            dashSpeed = 8f,
+            dashLength = .5f,
+            dashCooldown = 1f,
+            dashInvincibility = .5f;
+
+    private float
+
+            dashCounter,
+            dashCooldownCounter;
+
     private void Awake()
     {
         instance = this;
@@ -46,6 +61,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        activeMoveSpeed = moveSpeed;
     }
 
     void Update()
@@ -55,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
         moveInput.Normalize();
 
-        rb.velocity = moveInput * moveSpeed;
+        rb.velocity = moveInput * activeMoveSpeed;
 
         Vector3 mousePosition = Input.mousePosition;
         Vector3 screenPoint = cam.WorldToScreenPoint(transform.localPosition);
@@ -81,6 +97,32 @@ public class PlayerController : MonoBehaviour
             if (shotCounter <= 0) Shoot();
         }
 
+        // dash
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (CanDash())
+            {
+                activeMoveSpeed = dashSpeed;
+                dashCounter = dashLength;
+                PlayerHealthController.instance.MakeInvincible (
+                    dashInvincibility
+                );
+                anim.SetTrigger("dash");
+            }
+        }
+
+        if (dashCounter > 0)
+        {
+            dashCounter -= Time.deltaTime;
+            if (dashCounter <= 0)
+            {
+                activeMoveSpeed = moveSpeed;
+                dashCooldownCounter = dashCooldown;
+            }
+        }
+
+        if (dashCooldownCounter > 0) dashCooldownCounter -= Time.deltaTime;
+
         // switching between idle and moving
         anim.SetBool("isMoving", moveInput != Vector2.zero);
     }
@@ -105,5 +147,10 @@ public class PlayerController : MonoBehaviour
     {
         bodySR.color =
             new Color(bodySR.color.r, bodySR.color.g, bodySR.color.b, alpha);
+    }
+
+    private bool CanDash()
+    {
+        return dashCooldownCounter <= 0 && dashCounter <= 0;
     }
 }

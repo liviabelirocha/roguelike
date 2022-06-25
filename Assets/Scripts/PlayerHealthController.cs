@@ -42,10 +42,9 @@ public class PlayerHealthController : MonoBehaviour
         if (invincibleCount <= 0)
         {
             currentHealth--;
-            invincibleCount = damageInvincibleLength;
+            MakeInvincible (damageInvincibleLength);
 
             UIController.instance.SetHealth (maxHealth, currentHealth);
-            PlayerController.instance.SetAlpha(0.5f);
 
             if (currentHealth <= 0)
             {
@@ -53,5 +52,11 @@ public class PlayerHealthController : MonoBehaviour
                 UIController.instance.ToggleDeathScreen(true);
             }
         }
+    }
+
+    public void MakeInvincible(float length)
+    {
+        invincibleCount = length;
+        PlayerController.instance.SetAlpha(0.5f);
     }
 }
