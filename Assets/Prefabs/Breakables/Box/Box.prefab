@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6635171503866616160}
   - component: {fileID: 6635171503866616161}
   - component: {fileID: 6635171503866616162}
+  - component: {fileID: 4541905965431291714}
   m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
@@ -72,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -833455479
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 4098156409588004937, guid: b1e514ee9c00f0c458e99f588dfa4cb0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -98,6 +99,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4971c5a3c78586741b648cedaa343164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  brokenPieces:
+  - {fileID: 5028686178821233057, guid: ea7aa8af083fa7d47a5ed4a741617c31, type: 3}
+  - {fileID: 7484713284909312290, guid: b323062a1d8f15b469812e0999d05d7d, type: 3}
+  - {fileID: 5151526620138579016, guid: 1abe9d6d798b42647ae8392580accd64, type: 3}
+  - {fileID: 6964164583475522199, guid: 9722cb5e0f318f94a8d9f03b49b3007f, type: 3}
+  - {fileID: 8556221062595944141, guid: 24e353e3658d139469e51d9258893f6b, type: 3}
+  - {fileID: 8729340941962324475, guid: 0f229f96cc6f49149b63d477f4098833, type: 3}
+  maxPieces: 0
 --- !u!61 &6635171503866616162
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -124,3 +133,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8125, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4541905965431291714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635171503866616163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7655089fce896fb469dfb997bff1d140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
