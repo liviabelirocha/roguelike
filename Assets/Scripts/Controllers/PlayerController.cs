@@ -153,4 +153,9 @@ public class PlayerController : MonoBehaviour
     {
         return dashCooldownCounter <= 0 && dashCounter <= 0;
     }
+
+    public bool IsDashing()
+    {
+        return dashCounter > 0;
+    }
 }
