@@ -59,4 +59,11 @@ public class PlayerHealthController : MonoBehaviour
         invincibleCount = length;
         PlayerController.instance.SetAlpha(0.5f);
     }
+
+    public void Heal(int amount)
+    {
+        currentHealth += amount;
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+        UIController.instance.SetHealth (maxHealth, currentHealth);
+    }
 }

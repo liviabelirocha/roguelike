@@ -10,6 +10,15 @@ public class Breakables : MonoBehaviour
     [SerializeField]
     private int maxPieces;
 
+    [SerializeField]
+    private bool shouldDropItem;
+
+    [SerializeField]
+    private GameObject[] itemsToDrop;
+
+    [SerializeField]
+    private float itemDropPercent;
+
     void Start()
     {
         maxPieces = brokenPieces.Length - 1;
@@ -26,7 +35,7 @@ public class Breakables : MonoBehaviour
             if (PlayerController.instance.IsDashing())
             {
                 SmashAnimation();
-
+                DropItem();
                 Destroy (gameObject);
             }
         }
@@ -47,6 +56,22 @@ public class Breakables : MonoBehaviour
             Instantiate(brokenPieces[randomPiece],
             transform.position,
             transform.rotation);
+        }
+    }
+
+    private void DropItem()
+    {
+        if (shouldDropItem)
+        {
+            float dropChance = Random.Range(0f, 100f);
+
+            if (dropChance < itemDropPercent)
+            {
+                int randomItem = GetRandom(itemsToDrop.Length);
+                Instantiate(itemsToDrop[randomItem],
+                transform.position,
+                transform.rotation);
+            }
         }
     }
 }
