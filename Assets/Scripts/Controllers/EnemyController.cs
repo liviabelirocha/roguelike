@@ -48,6 +48,12 @@ public class EnemyController : MonoBehaviour
 
     private Vector3 moveDirection;
 
+    [SerializeField]
+    private int
+
+            sfxIndexDeath,
+            sfxIndexHurt;
+
     void Start()
     {
     }
@@ -106,6 +112,7 @@ public class EnemyController : MonoBehaviour
         if (health <= 0)
         {
             Destroy (gameObject);
+            AudioManager.instance.PlaySFX (sfxIndexDeath);
 
             int selectedSplatterIndex = Random.Range(0, deathSplatter.Length);
             int rotation = Random.Range(0, 4);
@@ -113,6 +120,10 @@ public class EnemyController : MonoBehaviour
             Instantiate(deathSplatter[selectedSplatterIndex],
             transform.position,
             Quaternion.Euler(0f, 0f, rotation * 90f));
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX (sfxIndexHurt);
         }
     }
 }

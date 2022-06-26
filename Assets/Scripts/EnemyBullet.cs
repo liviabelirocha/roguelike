@@ -9,11 +9,15 @@ public class EnemyBullet : MonoBehaviour
 
     private Vector3 direction;
 
+    private int sfxIndex = 17;
+
     void Start()
     {
         direction =
             PlayerController.instance.transform.position - transform.position;
         direction.Normalize();
+
+        AudioManager.instance.PlaySFX (sfxIndex);
     }
 
     void Update()

@@ -40,5 +40,6 @@ public class UIController : MonoBehaviour
     public void ToggleDeathScreen(bool status)
     {
         deathScreen.SetActive (status);
+        if (status) AudioManager.instance.PlayGameOver();
     }
 }

@@ -17,6 +17,12 @@ public class PlayerHealthController : MonoBehaviour
 
     private float invincibleCount;
 
+    [SerializeField]
+    private int
+
+            sfxIndexHurt,
+            sfxIndexDeath;
+
     void Awake()
     {
         instance = this;
@@ -48,9 +54,12 @@ public class PlayerHealthController : MonoBehaviour
 
             if (currentHealth <= 0)
             {
+                AudioManager.instance.PlaySFX (sfxIndexDeath);
                 PlayerController.instance.gameObject.SetActive(false);
                 UIController.instance.ToggleDeathScreen(true);
             }
+            else
+                AudioManager.instance.PlaySFX(sfxIndexHurt);
         }
     }
 

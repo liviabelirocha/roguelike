@@ -53,6 +53,9 @@ public class PlayerController : MonoBehaviour
             dashCounter,
             dashCooldownCounter;
 
+    [SerializeField]
+    private int sfxIndexDash;
+
     private void Awake()
     {
         instance = this;
@@ -108,6 +111,7 @@ public class PlayerController : MonoBehaviour
                     dashInvincibility
                 );
                 anim.SetTrigger("dash");
+                AudioManager.instance.PlaySFX (sfxIndexDash);
             }
         }
 

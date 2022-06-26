@@ -16,8 +16,14 @@ public class PlayerBullet : MonoBehaviour
     [SerializeField]
     private int damage = 50;
 
+    private int
+
+            sfxIndexBullet = 15,
+            sfxIndexImpact = 4;
+
     void Start()
     {
+        AudioManager.instance.PlaySFX (sfxIndexBullet);
     }
 
     void Update()
@@ -30,6 +36,9 @@ public class PlayerBullet : MonoBehaviour
         Instantiate(impactEffect, transform.position, transform.rotation);
 
         other.GetComponent<EnemyController>()?.DamageEnemy(damage);
+        other.GetComponent<Breakables>()?.DestroyBreakable();
+
+        AudioManager.instance.PlaySFX (sfxIndexImpact);
 
         Destroy (gameObject);
     }

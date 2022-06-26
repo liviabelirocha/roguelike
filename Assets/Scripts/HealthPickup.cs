@@ -10,6 +10,9 @@ public class HealthPickup : MonoBehaviour
     [SerializeField]
     private float waitToBeCollected = .5f;
 
+    [SerializeField]
+    private int sfxIndex;
+
     void Start()
     {
     }
@@ -25,6 +28,7 @@ public class HealthPickup : MonoBehaviour
         {
             PlayerHealthController.instance.Heal (healAmount);
             Destroy (gameObject);
+            AudioManager.instance.PlaySFX (sfxIndex);
         }
     }
 }

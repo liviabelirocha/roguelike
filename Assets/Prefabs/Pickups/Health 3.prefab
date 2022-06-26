@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3835811949265831861}
   - component: {fileID: 6826214508157439634}
   - component: {fileID: 354499170973877780}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Health 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,3 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healAmount: 3
+  waitToBeCollected: 0.5
+  sfxIndex: 7

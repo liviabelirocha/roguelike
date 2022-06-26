@@ -19,6 +19,9 @@ public class Breakables : MonoBehaviour
     [SerializeField]
     private float itemDropPercent;
 
+    [SerializeField]
+    private int sfxIndex;
+
     void Start()
     {
         maxPieces = brokenPieces.Length - 1;
@@ -31,14 +34,15 @@ public class Breakables : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
-        {
-            if (PlayerController.instance.IsDashing())
-            {
-                SmashAnimation();
-                DropItem();
-                Destroy (gameObject);
-            }
-        }
+            if (PlayerController.instance.IsDashing()) DestroyBreakable();
+    }
+
+    public void DestroyBreakable()
+    {
+        SmashAnimation();
+        DropItem();
+        Destroy (gameObject);
+        AudioManager.instance.PlaySFX (sfxIndex);
     }
 
     private int GetRandom(int length, int min = 0)

@@ -109,11 +109,13 @@ MonoBehaviour:
   - {fileID: 879405827004374089, guid: 63ea2fce13bcf904885d4a488a915d36, type: 3}
   - {fileID: 9169034309720932025, guid: b738bb70f3cbb7649b448ee519e7e64b, type: 3}
   impactEffect: {fileID: 1973847693315028382, guid: add081c5e07f99e4c8b19d44564b979f, type: 3}
-  shouldShoot: 1
+  shouldShoot: 0
   bullet: {fileID: 6754318976144683587, guid: 3d4558554f00cea4e92bb1e1438e3847, type: 3}
   firePoint: {fileID: 3529632694252991902}
   fireRate: 1
   shootRange: 10
+  sfxIndexDeath: 1
+  sfxIndexHurt: 2
 --- !u!95 &2360520247184225676
 Animator:
   serializedVersion: 4
